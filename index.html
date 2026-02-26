@@ -1,469 +1,593 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Story</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  
-  <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  
-  body{
-    font-family:'Inter',sans-serif;
-    background:linear-gradient(135deg,#ffe6f0,#fff7e6,#e6f7ff);
-    background-size:400% 400%;
-    animation:gradientMove 15s ease infinite;
-    color:#333;
-    overflow-x:hidden;
-  }
-  
-  @keyframes gradientMove{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-  
-  /* INTRO */
-  .intro{
-    position:fixed;
-    width:100%;
-    height:100vh;
-    background:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:9999;
-    transition:opacity .8s ease;
-    text-align:center;
-    padding:20px;
-  }
-  
-  .intro h1{
-    font-family:'Playfair Display',serif;
-    color:#d45c8a;
-    margin-bottom:20px;
-  }
-  
-  .intro button{
-    padding:12px 35px;
-    border:none;
-    border-radius:30px;
-    background:#d45c8a;
-    color:#fff;
-    cursor:pointer;
-  }
-  
-  /* HEARTS */
-  .hearts{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    pointer-events:none;
-    z-index:0;
-  }
-  
-  .heart{
-    position:absolute;
-    bottom:-40px;
-    font-size:18px;
-    opacity:.5;
-    animation:floatUp linear infinite;
-  }
-  
-  @keyframes floatUp{
-    0%{transform:translateY(0) scale(1);opacity:.6}
-    100%{transform:translateY(-110vh) scale(1.3);opacity:0}
-  }
-  
-  /* SECTIONS */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Story</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#ffe6f0,#fff7e6,#e6f7ff);
+  background-size:400% 400%;
+  animation:gradientMove 15s ease infinite;
+  color:#333;
+  overflow-x:hidden;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* INTRO */
+.intro{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  transition:opacity .8s ease;
+  text-align:center;
+  padding:20px;
+}
+
+.intro h1{
+  font-family:'Playfair Display',serif;
+  color:#d45c8a;
+  margin-bottom:20px;
+}
+
+.intro button{
+  padding:12px 35px;
+  border:none;
+  border-radius:30px;
+  background:#d45c8a;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* HEARTS */
+.hearts{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+.heart{
+  position:absolute;
+  bottom:-40px;
+  font-size:18px;
+  opacity:.5;
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:.6}
+  100%{transform:translateY(-110vh) scale(1.3);opacity:0}
+}
+
+/* SECTIONS */
+section{
+  padding:90px 20px;
+  max-width:1100px;
+  margin:auto;
+  position:relative;
+  z-index:1;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
+}
+
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h1,h3{
+  font-family:'Playfair Display',serif;
+  color:#d45c8a;
+  text-align:center;
+}
+
+.hero{
+  padding-top:130px;
+  text-align:center;
+}
+
+/* PHOTO FRAME */
+.photo-frame{
+  padding:12px;
+  background:white;
+  border-radius:28px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.08),
+    0 2px 8px rgba(212,92,138,.15);
+  transition:.4s ease;
+  position:relative;
+}
+
+.photo-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:28px;
+  border:1px solid rgba(212,92,138,.15);
+  pointer-events:none;
+}
+
+.photo-frame:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.12),
+    0 5px 15px rgba(212,92,138,.2);
+}
+
+/* SLIDESHOW */
+.slideshow img{
+  width:100%;
+  display:none;
+  border-radius:18px;
+}
+
+.slideshow img.active{
+  display:block;
+  animation:fade 1s ease;
+}
+
+@keyframes fade{
+  from{opacity:.4}
+  to{opacity:1}
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
+
+.gallery img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:18px;
+  cursor:pointer;
+  transition:.35s;
+}
+
+.gallery img:hover{
+  transform:scale(1.03);
+}
+
+/* VIDEO */
+video{
+  width:100%;
+  max-height:500px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.08);
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  padding:20px;
+}
+
+.lightbox img{
+  max-width:100%;
+  max-height:100%;
+  border-radius:20px;
+}
+
+footer{
+  text-align:center;
+  padding:60px 20px;
+  font-size:14px;
+  opacity:.6;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
   section{
-    padding:90px 20px;
-    max-width:1100px;
-    margin:auto;
-    position:relative;
-    z-index:1;
-    opacity:0;
-    transform:translateY(40px);
-    transition:all 1s ease;
+    padding:70px 18px;
   }
-  
-  section.show{
-    opacity:1;
-    transform:translateY(0);
-  }
-  
-  h1,h3{
-    font-family:'Playfair Display',serif;
-    color:#d45c8a;
-    text-align:center;
-  }
-  
+
   .hero{
-    padding-top:130px;
-    text-align:center;
+    padding-top:110px;
   }
-  
-  /* PHOTO FRAME */
-  .photo-frame{
-    padding:12px;
-    background:white;
-    border-radius:28px;
-    box-shadow:
-      0 10px 30px rgba(0,0,0,.08),
-      0 2px 8px rgba(212,92,138,.15);
-    transition:.4s ease;
-    position:relative;
-  }
-  
-  .photo-frame::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:28px;
-    border:1px solid rgba(212,92,138,.15);
-    pointer-events:none;
-  }
-  
-  .photo-frame:hover{
-    transform:translateY(-6px);
-    box-shadow:
-      0 20px 40px rgba(0,0,0,.12),
-      0 5px 15px rgba(212,92,138,.2);
-  }
-  
-  /* SLIDESHOW */
-  .slideshow img{
-    width:100%;
-    display:none;
-    border-radius:18px;
-  }
-  
-  .slideshow img.active{
-    display:block;
-    animation:fade 1s ease;
-  }
-  
-  @keyframes fade{
-    from{opacity:.4}
-    to{opacity:1}
-  }
-  
-  /* GALLERY */
+
   .gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:22px;
+    grid-template-columns:1fr;
+    gap:18px;
   }
-  
+
   .gallery img{
-    width:100%;
-    height:240px;
-    object-fit:cover;
-    border-radius:18px;
-    cursor:pointer;
-    transition:.35s;
+    height:260px;
   }
-  
-  .gallery img:hover{
-    transform:scale(1.03);
-  }
-  
-  /* VIDEO */
+
   video{
-    width:100%;
-    max-height:500px;
-    object-fit:cover;
-    border-radius:18px;
-    box-shadow:0 20px 50px rgba(0,0,0,.08);
+    max-height:380px;
   }
-  
-  /* LIGHTBOX */
-  .lightbox{
-    position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
-    background:rgba(0,0,0,.85);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
-    padding:20px;
-  }
-  
-  .lightbox img{
-    max-width:100%;
-    max-height:100%;
-    border-radius:20px;
-  }
-  
-  footer{
-    text-align:center;
-    padding:60px 20px;
-    font-size:14px;
-    opacity:.6;
-  }
-  
-  /* MOBILE */
-  @media(max-width:768px){
-  
-    section{
-      padding:70px 18px;
-    }
-  
-    .hero{
-      padding-top:110px;
-    }
-  
-    .gallery{
-      grid-template-columns:1fr;
-      gap:18px;
-    }
-  
-    .gallery img{
-      height:260px;
-    }
-  
-    video{
-      max-height:380px;
-    }
-  }/* MOTION SECTION */
-  .motion-section{
-    background:rgba(255,255,255,0.4);
-    backdrop-filter:blur(10px);
-    border-radius:40px;
-    margin:60px 20px;
-    padding:80px 30px;
-  }
-  
-  /* WRAPPER */
+}/* MOTION SECTION */
+.motion-section{
+  background:rgba(255,255,255,0.4);
+  backdrop-filter:blur(10px);
+  border-radius:40px;
+  margin:60px 20px;
+  padding:80px 30px;
+}
+
+/* WRAPPER */
+.motion-wrapper{
+  display:flex;
+  gap:40px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+/* PHOTOBOOTH STRIP STYLE */
+.photobooth-strip{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  padding:15px;
+  background:#111;
+  border-radius:25px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+
+.photobooth-strip img{
+  width:180px;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  filter:contrast(1.05) brightness(1.05);
+}
+
+/* VIDEO GRID STYLE */
+.cinematic-video{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  max-width:700px;
+}
+
+/* VIDEO SIZE */
+.cinematic-video video{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.25),
+    0 0 25px rgba(212,92,138,.15);
+  transition:.3s ease;
+}
+
+.cinematic-video video:hover{
+  transform:scale(1.03);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
   .motion-wrapper{
-    display:flex;
-    gap:40px;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-  
-  /* PHOTOBOOTH STRIP STYLE */
-  .photobooth-strip{
-    display:flex;
     flex-direction:column;
-    gap:15px;
-    padding:15px;
-    background:#111;
-    border-radius:25px;
-    box-shadow:0 25px 60px rgba(0,0,0,.25);
   }
-  
+
+  .photobooth-strip{
+    flex-direction:row;
+    overflow-x:auto;
+  }
+
   .photobooth-strip img{
-    width:180px;
-    height:220px;
-    object-fit:cover;
-    border-radius:12px;
-    filter:contrast(1.05) brightness(1.05);
+    width:160px;
+    height:200px;
   }
-  
-  /* VIDEO GRID STYLE */
+
+}
+
+@media(max-width:768px){
+
   .cinematic-video{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-    max-width:700px;
+    grid-template-columns:1fr;
   }
-  
-  /* VIDEO SIZE */
+
   .cinematic-video video{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:20px;
-    box-shadow:
-      0 20px 50px rgba(0,0,0,.25),
-      0 0 25px rgba(212,92,138,.15);
-    transition:.3s ease;
+    height:240px;
   }
-  
-  .cinematic-video video:hover{
-    transform:scale(1.03);
-  }
-  
-  /* MOBILE */
-  @media(max-width:768px){
-  
-    .motion-wrapper{
-      flex-direction:column;
-    }
-  
-    .photobooth-strip{
-      flex-direction:row;
-      overflow-x:auto;
-    }
-  
-    .photobooth-strip img{
-      width:160px;
-      height:200px;
-    }
-  
-  }
-  
-  @media(max-width:768px){
-  
-    .cinematic-video{
-      grid-template-columns:1fr;
-    }
-  
-    .cinematic-video video{
-      height:240px;
-    }
-  
-  }
-  
-  
-  </style>
-  </head>
-  <body>
-  
-  <div class="intro" id="intro">
-    <h1>Open Our Memory ✨</h1>
-    <button onclick="startExperience()">Open</button>
-  </div>
-  
-  <div class="hearts" id="hearts"></div>
-  
-  <section class="hero">
-    <h1>Our Story ✨</h1>
-    <p>It started small.</p>
-    <p>And somehow, it became everything.</p>
-  </section>
-  
-  
-<!-- SLIDESHOW -->
-<img class="active" src="/lucu 1.jpeg">
-<img src="/lucu2.jpeg">
-<img src="lucu 3.jpeg">
-<img src="lucu4.jpeg">
-<img src="lucu5.jpeg">
 
-<!-- US TOGETHER -->
-<img src="zoom sam a sama .jpeg" onclick="openLightbox(this)">
-<img src="kelompok bareng .jpeg" onclick="openLightbox(this)">
-<img src="first dtae .jpeg" onclick="openLightbox(this)">
-<img src="bojoo cfe.jpeg" onclick="openLightbox(this)">
-<img src="mwerenung.jpeg" onclick="openLightbox(this)">
-<img src="sabar semester pendek.jpeg" onclick="openLightbox(this)">
-<img src="holidays.jpeg" onclick="openLightbox(this)">
-<img src="kidzania.jpeg" onclick="openLightbox(this)">
-<img src="cukur.jpeg" onclick="openLightbox(this)">
-<img src="GBI.jpeg" onclick="openLightbox(this)">
-<img src="aeon sama sama.jpeg" onclick="openLightbox(this)">
-<img src="aeon fto.jpeg" onclick="openLightbox(this)">
-<img src="azab wkw .jpeg" onclick="openLightbox(this)">
-<img src="sama sama .jpeg" onclick="openLightbox(this)">
-<img src="akward.jpeg" onclick="openLightbox(this)">
-<img src="last foto .jpeg" onclick="openLightbox(this)">
-<img src="foto favoritku .jpeg" onclick="openLightbox(this)">
-<img src="pasangan natyal.jpeg" onclick="openLightbox(this)">
+}
 
-<!-- THE LITTLE THINGS -->
-<img src="lovee hair  .jpeg" onclick="openLightbox(this)">
-<img src="anjjing dia.jpeg" onclick="openLightbox(this)">
-<img src="basket girl .jpeg" onclick="openLightbox(this)">
-<img src="bonekaacapit.jpeg" onclick="openLightbox(this)">
-<img src="cantik1.jpeg" onclick="openLightbox(this)">
-<img src="cantik10.jpeg" onclick="openLightbox(this)">
-<img src="cantik11.jpeg" onclick="openLightbox(this)">
-<img src="cantik12.jpeg" onclick="openLightbox(this)">
-<img src="cantik2.jpeg" onclick="openLightbox(this)">
-<img src="cantik3.jpeg" onclick="openLightbox(this)">
-<img src="cantik4.jpeg" onclick="openLightbox(this)">
-<img src="cantik5.jpeg" onclick="openLightbox(this)">
-<img src="cantik6.jpeg" onclick="openLightbox(this)">
-<img src="cantik7.jpeg" onclick="openLightbox(this)">
-<img src="cantik8.jpeg" onclick="openLightbox(this)">
-<img src="cantik9.jpeg" onclick="openLightbox(this)">
-<img src="cantikmaksimal.jpeg" onclick="openLightbox(this)">
-<img src="semarang.jpeg" onclick="openLightbox(this)">
-<img src="normal jiu .jpeg" onclick="openLightbox(this)">
-<img src="dedepembeerontak.jpeg" onclick="openLightbox(this)">
-<img src="dayak.jpeg" onclick="openLightbox(this)">
 
-<!-- PHOTOBOOTH -->
-<img src="photobooth1.jpeg">
-<img src="Screenshot 2026-02-26 134227.png">
-<img src="Screenshot 2026-02-26 134241.png">
+</style>
+</head>
+<body>
 
-<!-- VIDEO -->
-<source src="hujan hujan bersama .mp4" type="video/mp4">
-<source src="1stphotobooth.mp4" type="video/mp4">
-<source src="peradaban .mp4" type="video/mp4">
-<source src="video cantik 2.mp4" type="video/mp4">
-<source src="videocantik1.mp4" type="video/mp4">
-<source src="hewan 1.mp4" type="video/mp4">
-<source src="hewan2.mp4" type="video/mp4">
-<source src="hewan 5.mp4" type="video/mp4">
-  
+<div class="intro" id="intro">
+  <h1>Open Our Memory ✨</h1>
+  <button onclick="startExperience()">Open</button>
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<section class="hero">
+  <h1>Our Story ✨</h1>
+  <p>It started small.</p>
+  <p>And somehow, it became everything.</p>
+</section>
+
+<section>
+  <div class="photo-frame">
+    <div class="slideshow">
+      <img class="active" src="/lucu 1.jpeg">
+      <img src="/lucu2.jpeg">
+      <img src="/lucu 3.jpeg">
+      <img src="/lucu4.jpeg">
+      <img src="/lucu5.jpeg">
     </div>
-  </section>
-  
-  <footer>
-    <p>Some stories don’t need an ending.</p>
-    <p>They just become beautiful memories.</p>
-  </footer>
-  
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img">
   </div>
-  
-  <script>
-  function startExperience(){
-    document.getElementById("intro").style.opacity="0";
-    setTimeout(()=>{document.getElementById("intro").style.display="none"},800);
-  }
-  
-  const heartsContainer=document.getElementById('hearts');
-  function createHeart(){
-    const heart=document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML='💖';
-    heart.style.left=Math.random()*100+'vw';
-    heart.style.animationDuration=(6+Math.random()*4)+'s';
-    heart.style.fontSize=(14+Math.random()*18)+'px';
-    heartsContainer.appendChild(heart);
-    setTimeout(()=>{heart.remove()},9000);
-  }
-  setInterval(createHeart,1200);
-  
-  let slideIndex=0;
-  const slides=document.querySelectorAll('.slideshow img');
-  setInterval(()=>{
-    slides[slideIndex].classList.remove('active');
-    slideIndex=(slideIndex+1)%slides.length;
-    slides[slideIndex].classList.add('active');
-  },3500);
-  
-  const sections=document.querySelectorAll("section");
-  window.addEventListener("scroll",()=>{
-    sections.forEach(sec=>{
-      const top=sec.getBoundingClientRect().top;
-      if(top < window.innerHeight - 100){
-        sec.classList.add("show");
-      }
-    });
+</section>
+
+
+<section>
+  <h3>Us Together</h3>
+  <div style="height:25px;"></div>
+
+  <div class="gallery">
+    <div class="photo-frame">
+      <img src="/zoom sam a sama .jpeg" onclick="openLightbox(this)">
+    </div>
+    <div class="photo-frame">
+      <img src="/kelompok bareng .jpeg" onclick="openLightbox(this)">
+    </div>
+    <div class="photo-frame">
+      <img src="/first dtae .jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/bojoo cfe.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/mwerenung.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/sabar semester pendek.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/holidays.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/kidzania.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cukur.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/GBI.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/aeon sama sama.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/aeon fto.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/azab wkw .jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/sama sama .jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/akward.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/last foto .jpeg" onclick="openLightbox(this)">
+    </div>
+      <div class="photo-frame">
+      <img src="/foto favoritku .jpeg" onclick="openLightbox(this)">
+    </div>
+      <div class="photo-frame">
+      <img src="/pasangan natyal.jpeg" onclick="openLightbox(this)">
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h3>The Little Things</h3>
+  <div style="height:25px;"></div>
+
+  <div class="gallery">
+    <div class="photo-frame">
+      <img src="/lovee hair  .jpeg" onclick="openLightbox(this)">
+    </div>
+    <div class="photo-frame">
+      <img src="/anjjing dia.jpeg" onclick="openLightbox(this)">
+    </div>
+    <div class="photo-frame">
+      <img src="/basket girl .jpeg" onclick="openLightbox(this)">
+    </div>
+       <div class="photo-frame">
+      <img src="/bonekaacapit.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik1.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik10.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik11.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik12.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik2.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik3.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img 
+      src="/cantik4.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik5.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik6.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik7.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik8.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantik9.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/cantikmaksimal.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/semarang.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/normal jiu .jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/dedepembeerontak.jpeg" onclick="openLightbox(this)">
+    </div>
+     <div class="photo-frame">
+      <img src="/dayak.jpeg" onclick="openLightbox(this)">
+    </div>
+  </div>
+</section>
+
+<section class="motion-section">
+  <h3>Photobooth & Motion Moments</h3>
+  <div style="height:30px;"></div>
+
+  <div class="motion-wrapper">
+
+    <!-- PHOTOBOOTH STRIP -->
+    <div class="photobooth-strip">
+      <img src="/photobooth1.jpeg">
+      <img src="/Screenshot 2026-02-26 134227.png">
+      <img src="/Screenshot 2026-02-26 134241.png">
+
+    </div>
+
+    <!-- VIDEO -->
+    <div class="cinematic-video">
+      <video controls>
+        <source src="/hujan hujan bersama .mp4" type="video/mp4">
+      </video>
+      <video controls>
+        <source src="/1stphotobooth.mp4" type="video/mp4">
+      </video>
+      <video controls>
+        <source src="/peradaban .mp4" type="video/mp4">
+      </video>
+      <video controls>
+        <source src="/video cantik 2.mp4" type="video/mp4">
+      </video>
+      <video controls>
+        <source src="/videocantik1.mp4" type="video/mp4">
+      </video>
+      <video controls>
+        <source src="/hewan 1.mp4" type="video/mp4">
+      </video>
+      <video controls>
+        <source src="/hewan2.mp4" type="video/mp4">
+      </video>
+      <video controls>
+        <source src="/hewan 5.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Some stories don’t need an ending.</p>
+  <p>They just become beautiful memories.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
+<script>
+function startExperience(){
+  document.getElementById("intro").style.opacity="0";
+  setTimeout(()=>{document.getElementById("intro").style.display="none"},800);
+}
+
+const heartsContainer=document.getElementById('hearts');
+function createHeart(){
+  const heart=document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML='💖';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.animationDuration=(6+Math.random()*4)+'s';
+  heart.style.fontSize=(14+Math.random()*18)+'px';
+  heartsContainer.appendChild(heart);
+  setTimeout(()=>{heart.remove()},9000);
+}
+setInterval(createHeart,1200);
+
+let slideIndex=0;
+const slides=document.querySelectorAll('.slideshow img');
+setInterval(()=>{
+  slides[slideIndex].classList.remove('active');
+  slideIndex=(slideIndex+1)%slides.length;
+  slides[slideIndex].classList.add('active');
+},3500);
+
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
   });
-  
-  function openLightbox(img){
-    document.getElementById('lightbox').style.display='flex';
-    document.getElementById('lightbox-img').src=img.src;
-  }
-  function closeLightbox(){
-    document.getElementById('lightbox').style.display='none';
-  }
-  </script>
-  
-  </body>
-  </html>
+});
+
+function openLightbox(img){
+  document.getElementById('lightbox').style.display='flex';
+  document.getElementById('lightbox-img').src=img.src;
+}
+function closeLightbox(){
+  document.getElementById('lightbox').style.display='none';
+}
+</script>
+
+</body>
+</html>
